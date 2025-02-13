@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos personalizados */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="form-container">
+            <h2 class="text-center mb-4">Cadastro de Clientes</h2>
+            <form action="/cadastro" method="POST">
+                <div class="mb-3">
+                    <label for="nome" class="form-label" aria-label="Nome do cliente">Nome:</label>
+                    <input type="text" id="nome" name="nome" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label" aria-label="Email do cliente">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="telefone" class="form-label" aria-label="Telefone do cliente">Telefone:</label>
+                    <input type="text" id="telefone" name="telefone" class="form-control" pattern="\(\d{2}\) \d{5}-\d{4}" required>
+                    <small class="form-text text-muted">Formato: (XX) XXXXX-XXXX</small>
+                </div>
+                <button type="submit" class="btn btn-primary btn-custom">Cadastrar</button>
+            </form>
+            <div class="mt-4">
+                <a href="/" class="btn btn-secondary btn-custom">Voltar para a Home</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback ao usuário (opcional) -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const success = urlParams.get('success');
+        const error = urlParams.get('error');
+
+        if (success) {
+            alert('Cadastro realizado com sucesso!');
+        }
+        if (error) {
+            alert('Erro ao cadastrar: ' + error);
+        }
+    </script>
+</body>
+</html>
