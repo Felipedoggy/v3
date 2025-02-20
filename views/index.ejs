@@ -37,14 +37,12 @@
             <% packages.forEach(pkg => { %>
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
-                        <!-- Exibe a imagem do pacote -->
-                        <img src="<%= pkg.imagem %>" class="card-img-top img-fluid" alt="<%= pkg.destino %>">
+                        <img src="<%= pkg.image %>" class="card-img-top img-fluid" alt="<%= pkg.name %>">
                         <div class="card-body">
-                            <h5 class="card-title"><%= pkg.destino %></h5>
-                            <p class="card-text"><strong>Descrição:</strong> <%= pkg.descricao %></p>
-                            <p class="card-text"><strong>Partida:</strong> <%= pkg.data_partida.toLocaleDateString('pt-BR') %></p>
-                            <p class="card-text"><strong>Preço:</strong> R$ <%= parseFloat(pkg.preco).toFixed(2) %></p>
-                            <p class="card-text"><strong>Duração:</strong> <%= pkg.duracao %> dias</p>
+                            <h5 class="card-title"><%= pkg.name %></h5>
+                            <p class="card-text"><strong>Destino:</strong> <%= pkg.destination %></p>
+                            <p class="card-text"><strong>Partida:</strong> <%= pkg.departure %></p>
+                            <p class="card-text"><strong>Preço:</strong> R$ <%= pkg.price.toFixed(2) %></p>
                             <a href="/package/<%= pkg.id %>" class="btn btn-primary">Detalhes</a>
                         </div>
                     </div>
