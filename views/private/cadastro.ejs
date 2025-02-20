@@ -49,18 +49,31 @@
         </div>
     </div>
 
-    <!-- Feedback ao usuário (opcional) -->
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const success = urlParams.get('success');
-        const error = urlParams.get('error');
+    import user from ".user.model.js";
+    user.insert().then(() => {
+        console.log("Usuário inserido com sucesso!");
+    }).catch((error) => {
+        console.error("Erro ao inserir usuário: ", error);
+    });
+    user.update().then(() => {
+        console.log("Usuário atualizado com sucesso!");
+    }).catch((error) => {
+        console.error("Erro ao atualizar hete: ", error);
+    });
+    user.remove().then(() => {
+        console.log("Usuário removido com sucesso!");
+    }).catch((error) => {
+        console.error("Erro ao remover hete: ", error);
+    });
+    user.consulte().then((rowUsers) => { 
+        for (user in rowUsers) {
+            console.log(user.toJSON());
+        }
+    }).catch((error) => {
+        console.error("Erro ao consultar usuários: ", error);
+    });
 
-        if (success) {
-            alert('Cadastro realizado com sucesso!');
-        }
-        if (error) {
-            alert('Erro ao cadastrar: ' + error);
-        }
     </script>
 </body>
 </html>
