@@ -1,38 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const quantity = document.getElementById('quantity'); // Campo de quantidade
-    const price = parseFloat(document.getElementById('price').textContent); // Preço unitário
-    const total = document.getElementById('total'); // Elemento onde o total será exibido
+    // Elementos do DOM
+    const quantityInput = document.getElementById('quantity'); // Campo de quantidade
+    const priceElement = document.getElementById('price'); // Elemento que exibe o preço unitário
+    const totalElement = document.getElementById('total'); // Elemento que exibe o total
+    const buyButton = document.getElementById('buyButton'); // Botão de compra
+
+    // Converte o preço unitário para número
+    const price = parseFloat(priceElement.textContent);
 
     // Função para atualizar o total
     function updateTotal() {
-        const qty = parseInt(quantity.value) || 0; // Pega a quantidade ou usa 0 se for inválido
-        const calculatedTotal = price * qty; // Calcula o total
-        total.textContent = calculatedTotal.toFixed(2); // Atualiza o valor exibido
+        const quantity = parseInt(quantityInput.value) || 0; // Pega a quantidade ou usa 0 se for inválido
+        const total = price * quantity; // Calcula o total
+        totalElement.textContent = total.toFixed(2); // Atualiza o valor exibido
     }
 
     // Atualiza o total quando o valor da quantidade muda
-    quantity.addEventListener('input', updateTotal);
+    quantityInput.addEventListener('input', updateTotal);
 
     // Atualiza o total ao carregar a página
     updateTotal();
+
+    // Botão de Comprar
+    buyButton.addEventListener('click', () => {
+        const quantity = parseInt(quantityInput.value) || 0;
+        if (quantity > 0) {
+            alert(`Compra de ${quantity} pacote(s) realizada com sucesso!`);
+            // Aqui você pode adicionar a lógica para enviar os dados para o backend
+        } else {
+            alert('Selecione uma quantidade válida.');
+        }
+    });
 });
-
-const buyButton = document.getElementById('buyButton');
-buyButton.addEventListener('click', () => {
-    const qty = parseInt(quantity.value) || 0;
-    if (qty > 0) {
-        alert(`Compra de ${qty} pacote(s) realizada com sucesso!`);
-        // Redirecionar para a página de confirmação ou enviar dados para o backend
-    } else {
-        alert('Selecione uma quantidade válida.');
-    }
-});
-
-
-fetch(`/api/pacotes/${id}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log('Detalhes do pacote:', data);
-        // Atualize a página com os dados recebidos
-    })
-    .catch(error => console.error('Erro ao buscar pacote:', error));
